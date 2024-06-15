@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Read Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <div class="w-full min-h-screen bg-zinc-900 text-white p-5">
+      <a class="text-blue-500" href="/">go to home page ></a>
+      <h1 class="text-4xl tracking-tighter mb-4 mt-8">All Users</h1>
+      <div class="users flex gap-3 flex-wrap">
+        <% if(userData.length > 0 ) { %> 
+          <% userData.forEach(user => { %>
+            <div class="user w-72 p-4 bg-zinc-800 rounded-2xl">
+              <div class="h-72 w-full bg-zinc-600 rounded-lg overflow-hidden">
+                <img
+                  class="h-full w-full object-cover object-center"
+                  src= "<%= user.image %>"
+                  alt="profile-image" 
+                />
+              </div>
+              <h1 class="text-xl tracking-tighter mt-2"><%= user.username %></h1>
+              <h2 class="text-sm font-normal tracking-tighter text-zinc-500 -mt-2">
+                <%= user.email %>
+              </h2>
+              <div class="flex gap-4 mt-8">
+                <a href="/edit/<%= user._id %>" class="text-zinc-300 cursor-pointer"
+                  >Edit User</a
+                >
+                <a
+                  href="/delete/<%= user._id %>"
+                  class="text-red-500 cursor-pointer"
+                  >Delete User</a
+                >
+              </div>
+            </div>
+          <% }); %> 
+        <% } else { %>
+        <div class="text-lg p-5 font-bold tracking-tighter text-zinc-500">
+          no user yet to display.
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

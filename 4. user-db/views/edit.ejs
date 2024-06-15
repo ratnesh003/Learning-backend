@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <div class="w-full min-h-screen bg-zinc-900 text-white p-5">
+      <a class="text-blue-500" href="/read">go to read page ></a>
+      <h1 class="text-4xl tracking-tighter mb-4 mt-8">Edit <span class="text-blue-500 font-bold"><%= user.username %>'s</span> data</h1>
+      <div class="flex flex-wrap gap-12">
+        <form
+          action="/update/<%= user._id %>"
+          method="post"
+          class="flex flex-col item-start gap-3 w-96"
+        >
+          <input
+            type="text"
+            class="p-2 outline-none bg-zinc-900 border-[1px] border-zinc-500 rounded-lg"
+            name="username"
+            value="<%= user.username %>"
+            id="name"
+            placeholder="Enter user new name ..."
+          />
+          <input
+            type="text"
+            class="p-2 outline-none bg-zinc-900 border-[1px] border-zinc-500 rounded-lg"
+            name="email"
+            value="<%= user.email %>"
+            id="email"
+            placeholder="Enter user new email ..."
+          />
+          <input
+            type="text"
+            class="p-2 outline-none bg-zinc-900 border-[1px] border-zinc-500 rounded-lg"
+            name="image"
+            value="<%= user.image %>"
+            id="imageUrl"
+            placeholder="Enter user new image url ..."
+          />
+          <input
+            type="submit"
+            class="bg-yellow-500 text-black w-fit py-2 px-4 rounded-lg cursor-pointer"
+            value="Update User Data"
+          />
+        </form>
+        <div class="user w-72 p-4 bg-zinc-800 rounded-2xl">
+          <div class="h-80 w-full bg-zinc-600 rounded-lg overflow-hidden">
+            <img
+              class="h-full w-full object-cover object-center"
+              src="<%= user.image %>"
+              alt="profile-image"
+            />
+          </div>
+          <h1 class="text-xl tracking-tighter mt-2"><%= user.username %></h1>
+          <h2 class="text-sm font-normal tracking-tighter text-zinc-500 -mt-2">
+            <%= user.email %>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
