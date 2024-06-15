@@ -27,7 +27,7 @@ app.get("/hash", function(req, res, next){
 })
 
 app.get("/compare", function(req, res, next){
-    const hash = req.cookies.hash
+    const hash = req.cookies.hash // temperorily stored hash in cookie instead of db
     bcrypt.compare("rxt@2003T", hash, function(err, result) {
         res.send(result);// results tell wheather the entred password and saved hash matched or not 
     });
