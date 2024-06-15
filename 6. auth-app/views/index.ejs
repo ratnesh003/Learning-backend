@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style/index.css" />
+  </head>
+  <body>
+    <div
+      class="w-full min-h-screen bg-zinc-900 flex flex-row items-center justify-center text-zinc-100 p-10"
+    >
+      <div
+        class="absolute left-10 top-10 w-[1200px] bg-zinc-800 rounded-lg p-4"
+      >
+        <span class="font-bold tracking-tighter text-blue-500 text-lg"
+          >Note</span
+        >
+        : This site stores the basic user info and login the user with the edit
+        access to the user's profile for the user that is loged-in and not for
+        the log-out users.
+      </div>
+      <div class="flex flex-col items-center justify-center">
+        <h1 class="px-4 py-2 tracking-tighter text-5xl">Welcome</h1>
+        <div class="flex flex-row items-center justify-between p-6 gap-4">
+          <a class="text-lg bg-zinc-700 px-4 py-2 rounded-lg" href="/create"
+            >Signup</a
+          >
+          <a class="text-lg bg-zinc-700 px-4 py-2 rounded-lg" href="/login"
+            >Login</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
