@@ -1,0 +1,1 @@
+try to develop a blog site while using clerk auth for authentication purposes and Prisma ORM to write queries and save the user data 
