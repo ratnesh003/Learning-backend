@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style/index.css" />
+  </head>
+  <body>
+    <div
+      class="w-full min-h-screen bg-zinc-900 flex flex-col items-start justify-start text-zinc-100 p-10"
+    >
+      <div class="w-full p-4 flex flex-row items-center justify-between">
+        <a class="text-blue-500 text-lg" href="/">go back to home ></a>
+        <div class="flex flex-row gap-4">
+          <a
+            class="text-lg bg-blue-500 text-zinc-100 rounded-lg p-6 py-2"
+            href="/profile"
+            >Profile</a
+          >
+          <a
+            class="text-lg bg-red-500 text-zinc-100 rounded-lg p-6 py-2"
+            href="/logout"
+            >Logout</a
+          >
+        </div>
+      </div>
+      <div class="flex flex-col items-start justify-between">
+        <div class="text-4xl">
+          Welcome
+          <span class="text-blue-500 font-bold tracking-tighter"
+            ><%= post.title %></span
+          >
+          on dashboard page
+        </div>
+        <div class="text-lg tracking-tighter pl-2 text-zinc-600 mb-10">
+          Here you can create your post and save cahnges.
+        </div>
+        <form
+          action="/post"
+          method="post"
+          class="flex flex-row items-center justify-center gap-4"
+        >
+          <input
+            class="p-2 bg-zinc-900 outline-none text-zinc-300 border-[1px] border-zinc-600 rounded-lg w-72"
+            placeholder="Enter post name ..."
+            type="text"
+            name="title"
+            id="title"
+          />
+          <input
+            class="p-2 bg-zinc-900 outline-none text-zinc-300 border-[1px] border-zinc-600 rounded-lg w-72"
+            placeholder="Enter post content ..."
+            type="content"
+            name="content"
+            id="content"
+          />
+          <input
+            class="p-2 bg-zinc-900 outline-none text-zinc-300 border-[1px] border-zinc-600 rounded-lg w-72"
+            placeholder="Enter post image url ..."
+            type="url"
+            name="image"
+            id="image"
+          />
+          <input
+            class="px-4 py-2 bg-yellow-500 text-zinc-900 rounded-lg cursor-pointer"
+            type="submit"
+            value="Create Post"
+          />
+        </form>
+      </div>
+      <div class="text-4xl tracking-tighter text-zinc-500 mt-10 mb-4">
+        Your created post's
+      </div>
+      <div class="flex flex-row flex-wrap gap-4">
+        <% if(post.length > 0 ){ %>
+          <% post.forEach( (post) => { %>
+            <div class="post w-72 p-4 bg-zinc-800 rounded-2xl">
+              <div class="h-72 w-full bg-zinc-600 rounded-lg overflow-hidden">
+                <img
+                  class="h-full w-full object-cover object-center"
+                  src="<%= post.image %>"
+                  alt="profile-image"
+                />
+              </div>
+              <h1 class="text-xl tracking-tighter mt-2"><%= post.title %></h1>
+              <h2 class="text-sm font-normal tracking-tighter text-zinc-500 max-h-24 h-24 text-ellipsis overflow-hidden whitespace-wrap">
+                <%= post.content %>
+              </h2>
+      
+              <div class="mt-4">
+                Date:
+                <span class="text-blue-500 font-bold tracking-tighter"
+                  ><%= post.date %></span
+                >
+              </div>
+              <div class="flex flex-row justify-between items-center mt-4">
+                <a href="/edit/<%= post._id %>" class="bg-blue-500 px-4 py-2 rounded-lg tracking-tighter cursor-pointer">edit</a>
+                <a href="/delete/<%= post._id %>" class="bg-red-500 px-4 py-2 rounded-lg tracking-tighter cursor-pointer">delete</a>
+              </div>
+            </div>
+          <% } ) %>
+        <%} else { %>
+          <div class="text-zinc-500 p-5 tracking-tighter font-bold"> Not posted yet ?</div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post Edit Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style/index.css" />
+  </head>
+  <body>
+    <div
+      class="w-full min-h-screen bg-zinc-900 flex flex-col items-start justify-start text-zinc-100 p-10"
+    >
+      <div class="w-full p-4 flex flex-row items-center justify-between">
+        <a class="text-blue-500 text-lg" href="/">go back to home ></a>
+        <div class="flex flex-row gap-4">
+          <a
+          class="text-lg bg-blue-500 text-zinc-100 rounded-lg p-6 py-2"
+          href="/dashboard"
+          >Dashboard</a
+          >
+          <a
+            class="text-lg bg-red-500 text-zinc-100 rounded-lg p-6 py-2"
+            href="/logout"
+            >Logout</a
+          >
+        </div>
+      </div>
+      <div class="flex flex-row gap-12 items-center justify-center">
+        <div class="flex flex-col items-start justify-between">
+          <div class="text-4xl">
+            Welcome on
+            <span class="text-blue-500 font-bold tracking-tighter"
+              ><%= post.title %>'s</span
+            >
+            edit page
+          </div>
+          <div class="text-lg tracking-tighter pl-2 text-zinc-600 mb-10">
+            Here you can edit your post data and save changes.
+          </div>
+          <form
+            action="/edit/<%= post._id %>"
+            method="post"
+            class="flex flex-col items-center justify-center gap-4"
+          >
+            <input
+              class="p-2 bg-zinc-900 outline-none text-zinc-300 border-[1px] border-zinc-600 rounded-lg w-96"
+              placeholder="Enter post title ..."
+              type="text"
+              name="title"
+              id="title"
+              value="<%= post.title %>"
+            />
+            <input
+              class="p-2 bg-zinc-900 outline-none text-zinc-300 border-[1px] border-zinc-600 rounded-lg w-96"
+              placeholder="Enter post content ..."
+              type="text"
+              name="content"
+              id="content"
+              value="<%= post.content %>"
+            />
+            <input
+              class="p-2 bg-zinc-900 outline-none text-zinc-300 border-[1px] border-zinc-600 rounded-lg w-96"
+              placeholder="Enter post image url ..."
+              type="url"
+              name="image"
+              id="image"
+              value="<%= post.image %>"
+            />
+            <input
+              class="px-4 py-2 bg-yellow-500 text-zinc-900 rounded-lg cursor-pointer"
+              type="submit"
+              value="Update Post"
+            />
+          </form>
+        </div>
+        <div class="post w-72 p-4 bg-zinc-800 rounded-2xl">
+          <div class="h-80 w-full bg-zinc-600 rounded-lg overflow-hidden">
+            <img
+              class="h-full w-full object-cover object-center"
+              src="<%= post.image %>"
+              alt="profile-image"
+            />
+          </div>
+          <h1 class="text-xl tracking-tighter mt-2"><%= post.title %></h1>
+          <h2 class="text-sm max-h-20 h-20 font-normal tracking-tighter text-zinc-500 -mt-2 text-ellipsis overflow-hidden whitespace-nowrap">
+            <%= post.content %>
+          </h2>
+
+          <div class="mt-4">
+            Date:
+                <span class="text-blue-500 font-bold tracking-tighter"
+                  ><%= post.date %></span
+                >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

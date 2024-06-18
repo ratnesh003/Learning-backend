@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style/index.css" />
+  </head>
+  <body>
+    <div
+      class="w-full min-h-screen bg-zinc-900 flex flex-col items-center justify-center text-zinc-100 p-10"
+    >
+      <div
+        class="absolute left-10 top-10 w-[1200px] bg-zinc-800 rounded-lg p-4"
+      >
+        <span class="font-bold tracking-tighter text-blue-500 text-lg"
+          >Note</span
+        >
+        : This site stores the basic user info and login the user with the edit
+        access to the user's profile for the user that is loged-in and not for
+        the log-out users.
+      </div>
+      <div class="flex flex-col items-center justify-center pt-52">
+        <h1 class="px-4 py-2 tracking-tighter text-5xl">Welcome</h1>
+        <div class="flex flex-row items-center justify-between p-6 gap-4">
+          <% if(ready) { %>
+            <a class="text-lg bg-zinc-700 px-4 py-2 rounded-lg" href="/profile"
+              >Profile</a
+            > 
+          <% } else { %>
+            <a class="text-lg bg-zinc-700 px-4 py-2 rounded-lg" href="/create"
+            >Signup</a
+            >
+            <a class="text-lg bg-zinc-700 px-4 py-2 rounded-lg" href="/login"
+              >Login</a
+            > 
+          <% } %>
+          
+        </div>
+      </div>
+      <div class="text-4xl tracking-tighter text-zinc-500 mt-10 mb-4">
+        All post's
+      </div>
+      <div class="flex flex-row flex-wrap gap-4">
+        <% if(posts.length > 0 ){ %>
+          <% posts.forEach( (post) => { %>
+            <div class="post w-72 p-4 bg-zinc-800 rounded-2xl">
+              <div class="h-72 w-full bg-zinc-600 rounded-lg overflow-hidden">
+                <img
+                  class="h-full w-full object-cover object-center"
+                  src="<%= post.image %>"
+                  alt="profile-image"
+                />
+              </div>
+              <h1 class="text-xl tracking-tighter mt-2"><%= post.title %></h1>
+              <h2 class="text-sm font-normal tracking-tighter text-zinc-500 max-h-24 h-24 text-ellipsis overflow-hidden whitespace-wrap">
+                <%= post.content %>
+              </h2>
+              <div class="w-full flex flex-row justify-between mt-2 -mb-3">
+                <h3 class=""><%= post.likes.length %> likes </h3>
+                <a class="text-blue-500" href="/like/<%= post._id %>">
+                  <% if(post.likes.indexOf(user?._id) === -1) { %>
+                  like
+                  <%= %>
+                  <% } else { %> 
+                    unlike
+                  <% } %>
+                </a>
+              </div>
+              <div class="mt-4">
+                Date:
+                <span class="text-blue-500 font-bold tracking-tighter"
+                  ><%= post.date %></span
+                >
+              </div>
+              <div class="flex flex-row justify-between items-center mt-4">
+                <a href="/edit/<%= post._id %>" class="bg-blue-500 px-4 py-2 rounded-lg tracking-tighter cursor-pointer">edit</a>
+                <a href="/delete/<%= post._id %>" class="bg-red-500 px-4 py-2 rounded-lg tracking-tighter cursor-pointer">delete</a>
+              </div>
+            </div>
+          <% } ) %>
+        <%} else { %>
+          <div class="text-zinc-500 p-5 tracking-tighter font-bold"> Not posted yet ?</div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
